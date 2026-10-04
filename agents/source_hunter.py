@@ -28,5 +28,23 @@ from tools.paper_rag_tool import search_papers
 #     memory=True,
 # )
 
+
 # Placeholder - replace with your implementation
-source_hunter = None
+source_hunter = Agent(
+    role="Document Searcher",
+    goal="Understand the questions provided. Break the query into chunks." \
+    "Search the research papers and provide the relevant answers" \
+         "STRICT RULES:\n"
+        "1. Every factual claim must come from the retrieved documents.\n"
+        "2. Do not use your pretrained/general knowledge.\n"
+        "3. Do not infer facts that are not explicitly supported by the documents.\n"
+        "4. Do not add examples unless they appear in the documents.\n"
+        "5. If the documents do not contain enough information, say "
+        "'INSUFFICIENT_DOCUMENT_CONTEXT'.\n"
+        "6. Include the source/document for each finding.",
+    backstory="You are document searcher who understands the questions and " \
+    "find the right answers from the documents provided.",
+    tools=[search_papers],
+    verbose=True,
+    memory=False
+)

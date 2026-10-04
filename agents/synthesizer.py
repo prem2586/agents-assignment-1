@@ -28,4 +28,18 @@ from crewai import Agent
 # )
 
 # Placeholder - replace with your implementation
-synthesizer = None
+synthesizer = Agent(
+    memory=False,
+    verbose=True,
+    tools=[],
+    role="Search results analyzer",
+    goal="Analyze the search results from the paper corpus." \
+    "Prepare a consice report based on the search results." \
+    "Understand the gaps, debates between the research papers results." \
+    "Provide a summary of results.",
+    backstory="You are a search result analyzer to provide of summary of search results from various research papers" \
+    "This results comes from various research papers but provide a consice report to the user." \
+    "You never introduce external knowledge, facts, examples, " \
+    "statistics, or assumptions that are not present in the " \
+    "provided research evidence."
+)

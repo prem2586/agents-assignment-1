@@ -35,4 +35,11 @@ from crewai import Agent
 # )
 
 # Placeholder - replace with your implementation
-report_writer = None
+report_writer = Agent(
+  verbose=True,
+  memory=True,
+  tools=[],
+  role="Academic writer",
+  goal="Create a well defined response with examples and callout any debates or gaps in the results.",
+  backstory="You received a response from research papers for a query. It has references and summary."
+)

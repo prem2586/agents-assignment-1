@@ -33,17 +33,17 @@ def create_research_crew(research_question: str) -> Crew:
     """
 
     # TODO: Create tasks for the research question
-    # tasks = create_research_tasks(research_question)
+    tasks = create_research_tasks(research_question)
 
     # TODO: Create and configure the Crew
-    # crew = Crew(
-    #     agents=[query_expander, source_hunter, synthesizer, report_writer],
-    #     tasks=tasks,
-    #     process=Process.sequential,
-    #     verbose=True,
-    #     memory=True,
-    # )
-    # return crew
+    crew = Crew(
+         agents=[query_expander,source_hunter,synthesizer,report_writer],
+         tasks=tasks,
+         process=Process.sequential,
+         verbose=True,
+         memory=True,
+    )
+    return crew
 
     # Placeholder - replace with your implementation
     raise NotImplementedError(
@@ -64,9 +64,9 @@ def run_research(research_question: str) -> str:
     TODO: Implement this function
     """
     # TODO: Create the crew and run it
-    # crew = create_research_crew(research_question)
-    # result = crew.kickoff()
-    # return str(result)
+    crew = create_research_crew(research_question)
+    result = crew.kickoff()
+    return str(result)
 
     # Placeholder - replace with your implementation
     raise NotImplementedError(
@@ -76,9 +76,19 @@ def run_research(research_question: str) -> str:
 
 # Allow running crew.py directly for testing
 if __name__ == "__main__":
-    test_question = "What are the main approaches to building AI agents that can reason and act?"
-    print(f"Testing crew with question: {test_question}\n")
-    result = run_research(test_question)
+    test_question = (
+        "What are the main approaches to building AI agents "
+        "that can reason and act?"
+    )
+    user_question = input(
+        f"Enter your research question\n"
+        f"(Press Enter for default): "
+    ).strip()
+
+    research_question = user_question or test_question
+
+    print(f"Testing crew with question: {research_question}\n")
+    result = run_research(research_question)
     print("\n" + "=" * 50)
     print("FINAL REPORT:")
     print("=" * 50)
